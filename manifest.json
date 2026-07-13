@@ -1,0 +1,26 @@
+{
+  "name": "René Auren Salud",
+  "short_name": "René Auren",
+  "description": "Mini App de Salud con información sencilla sobre alimentación para riñones, hígado graso y próstata.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f6f4ec",
+  "theme_color": "#1f7a55",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <meta
+    name="description"
+    content="René Auren Salud: consulta información sencilla sobre alimentación para riñones, hígado graso y próstata."
+  />
+
+  <meta name="theme-color" content="#123f32" />
+
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="default"
+  />
+
+  <meta
+    name="apple-mobile-web-app-title"
+    content="René Auren Salud"
+  />
+
+  <title>René Auren Salud</title>
+
+  <link rel="manifest" href="manifest.json" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- CABECERA -->
+    <header class="top-header">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          RA
+        </div>
+
+        <div class="brand-text">
+          <p class="brand-name">RENÉ AUREN SALUD</p>
+          <p class="brand-subtitle">
+            Tu guía sencilla de alimentación
+          </p>
+        </div>
+      </div>
+
+      <button
+        class="help-button"
+        id="helpButton"
+        type="button"
+        aria-label="Información importante"
+      >
+        ?
+      </button>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <span class="hero-badge" id="heroBadge">
+        GUÍA RENAL
+      </span>
+
+      <h1 id="heroTitle">
+        ¿Puedo comer esto?
+      </h1>
+
+      <p id="heroDescription">
+        Escribe un alimento y conoce qué debes tomar en cuenta
+        si vives con enfermedad renal.
+      </p>
+    </section>
+
+    <!-- SELECCIÓN DE CONDICIÓN -->
+    <section class="condition-section">
+      <div class="section-heading-row">
+        <h2>Tu condición</h2>
+        <span>Selecciona una</span>
+      </div>
+
+      <div
+        class="condition-tabs"
+        role="tablist"
+        aria-label="Seleccionar condición"
+      >
+        <button
+          class="condition-tab kidney active"
+          id="kidneyTab"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          data-condition="kidney"
+        >
+          Riñón
+        </button>
+
+        <button
+          class="condition-tab liver"
+          id="liverTab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-condition="liver"
+        >
+          Hígado graso
+        </button>
+
+        <button
+          class="condition-tab prostate"
+          id="prostateTab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          data-condition="prostate"
+        >
+          Próstata
+        </button>
+      </div>
+    </section>
+
+    <!-- BUSCADOR -->
+    <section class="search-section">
+      <div class="search-box">
+        <span class="search-icon" aria-hidden="true">
+          🔍
+        </span>
+
+        <input
+          id="foodSearch"
+          type="search"
+          placeholder="Ej. plátano, pollo, frijoles..."
+          autocomplete="off"
+          aria-label="Buscar alimento"
+        />
+
+        <button
+          class="clear-search-button"
+          id="clearSearchButton"
+          type="button"
+          aria-label="Limpiar búsqueda"
+        >
+          ×
+        </button>
+      </div>
+
+      <div
+        class="search-suggestions"
+        id="searchSuggestions"
+        aria-live="polite"
+      ></div>
+    </section>
+
+    <!-- CONSULTADOS CON FRECUENCIA -->
+    <section class="frequent-section">
+      <div class="section-heading-row">
+        <h2>Consultados con frecuencia</h2>
+        <span>Toca para revisar</span>
+      </div>
+
+      <div class="food-chips" id="frequentFoods">
+        <button
+          class="food-chip"
+          type="button"
+          data-food="Plátano"
+        >
+          🍌 Plátano
+        </button>
+
+        <button
+          class="food-chip"
+          type="button"
+          data-food="Papa"
+        >
+          🥔 Papa
+        </button>
+
+        <button
+          class="food-chip"
+          type="button"
+          data-food="Frijoles"
+        >
+          🫘 Frijoles
+        </button>
+
+        <button
+          class="food-chip"
+          type="button"
+          data-food="Pollo"
+        >
+          🍗 Pollo
+        </button>
+      </div>
+    </section>
+
+    <!-- RESULTADO -->
+    <section
+      class="result-section hidden"
+      id="resultSection"
+      aria-live="polite"
+    >
+      <article class="result-card">
+        <div class="result-top">
+          <div>
+            <span
+              class="result-condition-badge"
+              id="resultConditionBadge"
+            >
+              Riñón
+            </span>
+
+            <h2 id="resultFoodName">
+              Alimento
+            </h2>
+          </div>
+
+          <button
+            class="favorite-button"
+            id="favoriteButton"
+            type="button"
+            aria-label="Guardar alimento"
+          >
+            ♡
+          </button>
+        </div>
+
+        <div class="result-status" id="resultStatus">
+          Consulta general
+        </div>
+
+        <p class="result-summary" id="resultSummary">
+          Aquí aparecerá la información principal del alimento.
+        </p>
+
+        <div class="result-details">
+          <div class="detail-box">
+            <span class="detail-icon">✓</span>
+
+            <div>
+              <h3>Lo que debes saber</h3>
+              <p id="resultBenefits">
+                Información general.
+              </p>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <span class="detail-icon">!</span>
+
+            <div>
+              <h3>Precaución</h3>
+              <p id="resultWarning">
+                Consulta siempre con tu equipo médico.
+              </p>
+            </div>
+          </div>
+
+          <div class="detail-box">
+            <span class="detail-icon">🍽️</span>
+
+            <div>
+              <h3>Porción orientativa</h3>
+              <p id="resultPortion">
+                La cantidad puede variar según tu condición.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="primary-button"
+          id="askAboutFoodButton"
+          type="button"
+        >
+          Preguntarle a René sobre este alimento
+        </button>
+      </article>
+    </section>
+
+    <!-- ESTADO VACÍO -->
+    <section class="empty-state" id="emptyState">
+      <div class="empty-icon">
+        🥗
+      </div>
+
+      <h2>Busca un alimento</h2>
+
+      <p>
+        Escribe el nombre de un alimento para consultar información
+        sencilla según la condición seleccionada.
+      </p>
+    </section>
+
+    <!-- PREGÚNTALE A RENÉ -->
+    <section class="ask-rene-section" id="askReneSection">
+      <div class="ask-rene-card">
+        <div class="ask-rene-label">
+          💬 Contacto directo
+        </div>
+
+        <h2>Pregúntale a René Auren</h2>
+
+        <h3>¿Hay algo que te preocupa?</h3>
+
+        <p>
+          Si tienes dudas sobre riñones, hígado graso, próstata,
+          diabetes, alimentación o hábitos saludables, envíame tu
+          pregunta.
+        </p>
+
+        <p>
+          Leeré tu mensaje y, cuando sea posible, te responderé
+          personalmente o te compartiré información, una receta,
+          guía o recurso que pueda ayudarte.
+        </p>
+
+        <form id="questionForm" class="question-form">
+          <div class="form-group">
+            <label for="userName">
+              Tu nombre
+            </label>
+
+            <input
+              id="userName"
+              name="userName"
+              type="text"
+              maxlength="70"
+              placeholder="Ejemplo: María"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="questionTopic">
+              Tema
+            </label>
+
+            <select
+              id="questionTopic"
+              name="questionTopic"
+              required
+            >
+              <option value="">
+                Selecciona un tema
+              </option>
+
+              <option value="Riñones">
+                Riñones
+              </option>
+
+              <option value="Hígado graso">
+                Hígado graso
+              </option>
+
+              <option value="Próstata">
+                Próstata
+              </option>
+
+              <option value="Diabetes">
+                Diabetes
+              </option>
+
+              <option value="Alimentación">
+                Alimentación
+              </option>
+
+              <option value="Hábitos saludables">
+                Hábitos saludables
+              </option>
+
+              <option value="Otro">
+                Otro
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="userQuestion">
+              Escribe tu pregunta
+            </label>
+
+            <textarea
+              id="userQuestion"
+              name="userQuestion"
+              rows="5"
+              maxlength="900"
+              required
+              placeholder="Cuéntame qué es lo que te preocupa..."
+            ></textarea>
+          </div>
+
+          <button
+            class="whatsapp-button"
+            type="submit"
+          >
+            <span aria-hidden="true">📲</span>
+            Enviar mi pregunta por WhatsApp
+          </button>
+
+          <p class="form-help">
+            Se abrirá WhatsApp con tu consulta preparada.
+            Solo deberás tocar “Enviar”.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- PRÓXIMAMENTE -->
+    <section class="coming-soon-section">
+      <div class="section-heading-row">
+        <h2>Próximamente</h2>
+        <span>La app seguirá creciendo</span>
+      </div>
+
+      <div class="coming-soon-grid">
+        <article class="coming-soon-card">
+          <span class="coming-icon">🩸</span>
+          <h3>Diabetes</h3>
+          <p>Nuevas consultas de alimentación.</p>
+        </article>
+
+        <article class="coming-soon-card">
+          <span class="coming-icon">❤️</span>
+          <h3>Hipertensión</h3>
+          <p>Opciones para cuidar la presión.</p>
+        </article>
+
+        <article class="coming-soon-card">
+          <span class="coming-icon">🧠</span>
+          <h3>Ansiedad</h3>
+          <p>Hábitos, apoyo y bienestar emocional.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMUNIDAD -->
+    <section class="community-section">
+      <div class="community-card">
+        <div class="community-icon" aria-hidden="true">
+          🤝
+        </div>
+
+        <div>
+          <h2>Únete a nuestra comunidad de apoyo</h2>
+
+          <p>
+            Comparte experiencias, encuentra recetas y recibe
+            contenido nuevo junto a personas que también están
+            aprendiendo a cuidarse.
+          </p>
+        </div>
+
+        <a
+          class="community-button"
+          href="https://m.facebook.com/groups/1069873755711402/?ref=share&mibextid=wwXIfr"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Entrar a la comunidad
+        </a>
+      </div>
+    </section>
+
+    <!-- INSTALAR APP -->
+    <section class="install-section">
+      <div class="install-card">
+        <div>
+          <span class="install-label">
+            📲 Acceso rápido
+          </span>
+
+          <h2>Guarda la app en tu pantalla</h2>
+
+          <p>
+            Agrégala a la pantalla de inicio para abrirla como una
+            aplicación desde tu celular.
+          </p>
+        </div>
+
+        <button
+          class="install-button"
+          id="installAppButton"
+          type="button"
+        >
+          Agregar a mi pantalla
+        </button>
+      </div>
+    </section>
+
+    <!-- AVISO MÉDICO -->
+    <aside class="medical-disclaimer">
+      <strong>Información importante:</strong>
+
+      Esta app ofrece contenido educativo general. No sustituye
+      la evaluación, el diagnóstico ni el tratamiento de un médico,
+      nefrólogo, nutricionista u otro profesional de la salud.
+
+      Las necesidades de cada persona pueden cambiar según sus
+      análisis, medicamentos, etapa de la enfermedad y tratamiento.
+    </aside>
+
+    <!-- PIE -->
+    <footer class="app-footer">
+      <p>
+        © <span id="currentYear"></span> René Auren Salud
+      </p>
+
+      <p>
+        Información sencilla para ayudarte a tomar decisiones
+        más conscientes.
+      </p>
+    </footer>
+  </div>
+
+  <!-- NAVEGACIÓN INFERIOR -->
+  <nav class="bottom-navigation" aria-label="Navegación principal">
+    <button
+      class="nav-button active"
+      id="homeNavButton"
+      type="button"
+      data-section="home"
+    >
+      <span class="nav-icon" aria-hidden="true">⌂</span>
+      <span>Inicio</span>
+    </button>
+
+    <button
+      class="nav-button"
+      id="searchNavButton"
+      type="button"
+      data-section="search"
+    >
+      <span class="nav-icon" aria-hidden="true">⌕</span>
+      <span>Buscar</span>
+    </button>
+
+    <button
+      class="nav-button"
+      id="favoritesNavButton"
+      type="button"
+      data-section="favorites"
+    >
+      <span class="nav-icon" aria-hidden="true">♡</span>
+      <span>Guardados</span>
+    </button>
+
+    <button
+      class="nav-button"
+      id="profileNavButton"
+      type="button"
+      data-section="profile"
+    >
+      <span class="nav-icon" aria-hidden="true">◎</span>
+      <span>Perfil</span>
+    </button>
+  </nav>
+
+  <!-- MODAL DE AYUDA -->
+  <div
+    class="modal-overlay hidden"
+    id="helpModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="helpModalTitle"
+  >
+    <div class="modal-card">
+      <button
+        class="modal-close"
+        id="closeHelpModal"
+        type="button"
+        aria-label="Cerrar"
+      >
+        ×
+      </button>
+
+      <span class="modal-icon" aria-hidden="true">
+        💚
+      </span>
+
+      <h2 id="helpModalTitle">
+        Cómo usar la app
+      </h2>
+
+      <ol class="help-list">
+        <li>
+          Selecciona riñón, hígado graso o próstata.
+        </li>
+
+        <li>
+          Escribe el nombre de un alimento.
+        </li>
+
+        <li>
+          Revisa la información y las precauciones.
+        </li>
+
+        <li>
+          Si todavía tienes dudas, envía tu pregunta a René
+          por WhatsApp.
+        </li>
+      </ol>
+
+      <button
+        class="primary-button"
+        id="understoodButton"
+        type="button"
+      >
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- MENSAJE FLOTANTE -->
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+  <script src="database.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
