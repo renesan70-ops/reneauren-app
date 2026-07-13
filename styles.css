@@ -2553,4 +2553,341 @@ textarea:focus-visible {
   .install-card h2 {
     font-size: 1.40rem;
   }
+}/* =========================================================
+   MODO APP COMPACTA
+   René Auren Salud
+   Pegar al FINAL de styles.css
+   ========================================================= */
+
+/* Espacio seguro para iPhone */
+body {
+  padding-top: env(safe-area-inset-top);
+}
+
+.app-container {
+  padding-bottom:
+    calc(92px + env(safe-area-inset-bottom));
+}
+
+/* CABECERA MÁS COMPACTA */
+.top-header {
+  padding:
+    12px 18px
+    6px;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+}
+
+.brand-name {
+  font-size: 0.88rem;
+}
+
+.brand-subtitle {
+  font-size: 0.72rem;
+}
+
+.help-button {
+  width: 40px;
+  height: 40px;
+}
+
+/* HERO REDUCIDO */
+.hero-section {
+  padding:
+    12px 18px
+    10px;
+}
+
+.hero-badge {
+  font-size: 0.7rem;
+  padding: 6px 10px;
+}
+
+.hero-section h1 {
+  font-size: clamp(2rem, 8vw, 2.7rem);
+  line-height: 1.02;
+  margin:
+    10px 0
+    6px;
+}
+
+.hero-section p {
+  display: none;
+}
+
+/* SECCIÓN DE CONDICIONES */
+.condition-section {
+  padding:
+    8px 18px
+    6px;
+}
+
+.condition-section .section-heading-row {
+  margin-bottom: 9px;
+}
+
+.condition-section .section-heading-row h2 {
+  font-size: 1.05rem;
+}
+
+.condition-section .section-heading-row span {
+  font-size: 0.74rem;
+}
+
+/* LOS 3 BOTONES EN UNA SOLA FILA */
+.condition-tabs {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.condition-tab {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 5px;
+  border-radius: 13px;
+  font-size: 0.77rem;
+  line-height: 1.1;
+  white-space: normal;
+  box-shadow:
+    0 5px 14px
+    rgba(24, 63, 50, 0.06);
+}
+
+.condition-tab.active {
+  transform: none;
+  box-shadow:
+    0 7px 18px
+    rgba(31, 122, 85, 0.18);
+}
+
+/* BUSCADOR COMO ELEMENTO PRINCIPAL */
+.search-section {
+  padding:
+    8px 18px
+    4px;
+}
+
+.search-box {
+  min-height: 58px;
+  border-radius: 17px;
+  padding:
+    6px 8px
+    6px 15px;
+  box-shadow:
+    0 10px 28px
+    rgba(31, 63, 49, 0.09);
+}
+
+.search-icon {
+  font-size: 1.2rem;
+}
+
+.search-box input {
+  font-size: 1rem;
+}
+
+.clear-search-button {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+}
+
+/* SUGERENCIAS MÁS COMPACTAS */
+.search-suggestions {
+  margin-top: 6px;
+  border-radius: 15px;
+}
+
+.suggestion-item,
+.search-suggestion {
+  min-height: 48px;
+  padding: 9px 12px;
+}
+
+/* ELIMINAR CONTENIDO TIPO LANDING PAGE */
+.frequent-section,
+.empty-state,
+.ask-rene-section,
+.coming-soon-section,
+.install-section,
+.app-footer {
+  display: none !important;
+}
+
+/* RESULTADO MÁS CERCA DEL BUSCADOR */
+.result-section {
+  padding:
+    8px 18px
+    12px;
+}
+
+.result-card {
+  border-radius: 20px;
+  padding: 17px;
+  box-shadow:
+    0 14px 35px
+    rgba(31, 63, 49, 0.11);
+}
+
+.result-top {
+  margin-bottom: 10px;
+}
+
+.result-food-name,
+.result-top h2 {
+  font-size: 1.7rem;
+}
+
+.result-status {
+  margin:
+    8px 0
+    10px;
+}
+
+.result-summary {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.result-details {
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.detail-box {
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.detail-box h3 {
+  font-size: 0.83rem;
+}
+
+.detail-box p {
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.primary-button {
+  min-height: 48px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+}
+
+/* COMUNIDAD PEQUEÑA Y DIRECTA */
+.community-section {
+  padding:
+    6px 18px
+    12px;
+}
+
+.community-card {
+  display: grid;
+  grid-template-columns:
+    auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 17px;
+  min-height: auto;
+}
+
+.community-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  font-size: 1.2rem;
+}
+
+.community-card h2 {
+  font-family: inherit;
+  font-size: 0.87rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.community-card p {
+  display: none;
+}
+
+.community-button {
+  width: auto;
+  min-width: 82px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+/* AVISO MÉDICO COMPACTO */
+.medical-disclaimer {
+  margin:
+    4px 18px
+    12px;
+  padding: 10px 12px;
+  border-radius: 13px;
+  font-size: 0.66rem;
+  line-height: 1.4;
+  opacity: 0.82;
+}
+
+/* NAVEGACIÓN INFERIOR MÁS PEQUEÑA */
+.bottom-navigation {
+  width:
+    calc(100% - 20px);
+  max-width: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom:
+    calc(
+      8px +
+      env(safe-area-inset-bottom)
+    );
+  padding: 7px;
+  border-radius: 20px;
+  min-height: 66px;
+}
+
+.nav-button {
+  min-height: 52px;
+  padding: 6px 3px;
+  border-radius: 15px;
+  gap: 3px;
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+}
+
+.nav-button span:last-child {
+  font-size: 0.67rem;
+}
+
+/* TELÉFONOS PEQUEÑOS */
+@media (max-width: 390px) {
+  .condition-tab {
+    font-size: 0.69rem;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .community-card {
+    grid-template-columns:
+      auto 1fr;
+  }
+
+  .community-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
 }
